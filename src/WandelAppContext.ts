@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext } from "react";
-import type { WandelApp } from "./WandelApp";
+import type { WandelApp } from "./WandelApp.ts";
 
 export const WandelAppContext = createContext<WandelApp | null>(null);
 

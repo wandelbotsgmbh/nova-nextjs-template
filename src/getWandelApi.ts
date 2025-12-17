@@ -1,5 +1,5 @@
 import { NovaClient } from "@wandelbots/nova-js";
-import { env } from "./runtimeEnv";
+import { env } from "./runtimeEnv.ts";
 
 let nova: NovaClient | null = null;
 

@@ -12,9 +12,9 @@ import {
 } from "@wandelbots/wandelbots-js-react-components";
 import Image from "next/image";
 import { useState } from "react";
-import { env } from "../../runtimeEnv";
-import { useActiveRobot } from "../../WandelAppContext";
-import AnimatedBackground from "./AnimatedBackground";
+import { env } from "@/runtimeEnv.ts";
+import { useActiveRobot } from "@/WandelAppContext.ts";
+import AnimatedBackground from "./AnimatedBackground.ts";
 import wandelbots from "./wbnova.svg";
 
 const CustomCard = styled(Card)({

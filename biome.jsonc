@@ -17,7 +17,10 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "correctness": {
+        "useImportExtensions": "error"
+      }
     },
     "domains": {
       "next": "recommended",
@@ -25,6 +28,10 @@
     }
   },
   "assist": {
-    "enabled": false
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
   }
 }

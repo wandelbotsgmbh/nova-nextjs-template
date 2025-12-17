@@ -1,7 +1,8 @@
-import { getExposedRuntimeEnv } from "@/runtimeEnv";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter";
 import { Inter } from "next/font/google";
-import { ClientLayout } from "./ClientLayout";
-import "./globals.css";
+import { getExposedRuntimeEnv } from "@/runtimeEnv.ts";
+import { ClientLayout } from "./ClientLayout.tsx";
+import "./global.css";
 
 export const dynamic = "force-dynamic";
 
@@ -15,7 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ClientLayout env={getExposedRuntimeEnv()}>{children}</ClientLayout>
+        <AppRouterCacheProvider>
+          <ClientLayout env={getExposedRuntimeEnv()}>{children}</ClientLayout>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );

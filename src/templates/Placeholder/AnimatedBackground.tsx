@@ -1,10 +1,10 @@
-import React from "react";
 import "./animations.css";
 
 const AnimatedBackground = () => {
   return (
     <div className="gradient-bg">
       <svg xmlns="http://www.w3.org/2000/svg">
+        <title>Animated Background</title>
         <defs>
           <filter id="goo">
             <feGaussianBlur

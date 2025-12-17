@@ -1,5 +1,5 @@
 import { Stack } from "@mui/material";
-import { WandelAppMain } from "./WandelAppMain";
+import { WandelAppMain } from "./WandelAppMain.ts";
 
 export default function Home() {
   return (

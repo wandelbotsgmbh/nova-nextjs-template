@@ -1,11 +1,11 @@
 "use client";
 
-import { getNovaClient } from "@/getWandelApi";
-import { WandelApp } from "@/WandelApp";
-import { WandelAppContext } from "@/WandelAppContext";
 import { observer, useLocalObservable } from "mobx-react-lite";
 import { type ReactNode, useEffect } from "react";
-import { LoadingScreen } from "./LoadingScreen";
+import { getNovaClient } from "@/getWandelApi.ts";
+import { WandelApp } from "@/WandelApp.ts";
+import { WandelAppContext } from "@/WandelAppContext.ts";
+import { LoadingScreen } from "./LoadingScreen.tsx";
 
 export const WandelAppLoader = observer((props: { children: ReactNode }) => {
   const nova = getNovaClient();
@@ -36,7 +36,7 @@ export const WandelAppLoader = observer((props: { children: ReactNode }) => {
     try {
       controllersRes = await nova.api.controller.listControllers();
     } catch (error) {
-      console.error("Error: No connection to WandelAPI");
+      console.error("Error: No connection to WandelAPI", error);
     }
 
     const availableControllers = controllersRes?.instances || [];
