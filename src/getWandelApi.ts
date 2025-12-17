@@ -1,18 +1,18 @@
-import { NovaClient } from "@wandelbots/wandelbots-js"
-import { env } from "./runtimeEnv"
+import { NovaClient } from "@wandelbots/nova-js";
+import { env } from "./runtimeEnv";
 
-let nova: NovaClient | null = null
+let nova: NovaClient | null = null;
 
 const getSecureUrl = (url: string): string => {
-    if (!url) {
-        return url;
-    }
-    return url.startsWith('http://') || url.startsWith('https://') 
-      ? url 
-      : url.includes('wandelbots.io') 
-        ? `https://${url}` 
-        : `http://${url}`;
-}
+  if (!url) {
+    return url;
+  }
+  return url.startsWith("http://") || url.startsWith("https://")
+    ? url
+    : url.includes("wandelbots.io")
+      ? `https://${url}`
+      : `http://${url}`;
+};
 
 export const getNovaClient = () => {
   if (!nova) {
@@ -31,8 +31,8 @@ export const getNovaClient = () => {
         // Time out after 30 seconds
         timeout: 30000,
       },
-    })
+    });
   }
 
-  return nova
-}
+  return nova;
+};

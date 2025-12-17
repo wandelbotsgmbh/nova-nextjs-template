@@ -1,5 +1,6 @@
-# If you update this here, make sure to update the version in the Dockerfile as well
-useNodeVersion: 22.18.0
+# If you update this here, make sure to update the version in the Dockerfile
+# as well
+useNodeVersion: 24.12.0
 
 # Add minimum release age to mitigate risk of supply chain attacks
 # https://pnpm.io/settings#minimumreleaseage

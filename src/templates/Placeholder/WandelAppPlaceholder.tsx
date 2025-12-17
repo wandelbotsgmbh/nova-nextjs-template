@@ -1,19 +1,22 @@
-import { env } from "../../runtimeEnv"
-import React, { useState } from "react"
-import Image from "next/image"
-import Card from "@mui/material/Card"
-import CardContent from "@mui/material/CardContent"
-import Typography from "@mui/material/Typography"
-import { styled } from "@mui/system"
-import wandelbots from "./wandelbots.png"
-import { Box, Divider, Link, Stack } from "@mui/material"
-import { useActiveRobot } from "../../WandelAppContext"
-import { MathUtils } from "three"
-import AnimatedBackground from "./AnimatedBackground"
+import styled from "@emotion/styled";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Divider from "@mui/material/Divider";
+import Link from "@mui/material/Link";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 import {
   defaultAxisConfig,
   useAnimationFrame,
-} from "@wandelbots/wandelbots-js-react-components"
+} from "@wandelbots/wandelbots-js-react-components";
+import Image from "next/image";
+import { useState } from "react";
+import { MathUtils } from "three";
+import { env } from "../../runtimeEnv";
+import { useActiveRobot } from "../../WandelAppContext";
+import AnimatedBackground from "./AnimatedBackground";
+import wandelbots from "./wandelbots.png";
 
 const CustomCard = styled(Card)({
   background: "none",
@@ -21,7 +24,7 @@ const CustomCard = styled(Card)({
   margin: "10px",
   cursor: "pointer",
   width: "300px",
-})
+});
 
 const BlurredCard = styled(Card)({
   backgroundColor: "#ffffff11",
@@ -31,18 +34,18 @@ const BlurredCard = styled(Card)({
   border: "1px solid #ffffff22",
   cursor: "pointer",
   backdropFilter: "blur(50px)",
-})
+});
 
 export const WandelAppPlaceholder = () => {
-  const activeRobot = useActiveRobot()
-  const [axisConfig, setAxisConfig] = useState(defaultAxisConfig)
+  const activeRobot = useActiveRobot();
+  const [axisConfig, setAxisConfig] = useState(defaultAxisConfig);
 
   useAnimationFrame(() => {
     const newJoints =
-      activeRobot.rapidlyChangingMotionState.state.joint_position.joints
+      activeRobot.rapidlyChangingMotionState.state.joint_position.joints;
 
-    setAxisConfig([...newJoints].filter((item) => item !== undefined))
-  })
+    setAxisConfig([...newJoints].filter((item) => item !== undefined));
+  });
   return (
     <>
       <AnimatedBackground />
@@ -171,5 +174,5 @@ export const WandelAppPlaceholder = () => {
         </Box>
       </Box>
     </>
-  )
-}
+  );
+};

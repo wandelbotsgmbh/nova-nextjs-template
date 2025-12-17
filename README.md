@@ -48,6 +48,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 The boilerplate is structurally pretty simple since it needs no url changes, like a basic React SPA. Some things to note:
 
-- The application relies on the NPM package `@wandelbots/wandelbots-js` and `@wandelbots/wandelbots-js-react-compoents`. The package is used to communicate with the Wandelbots API. The component library is used to render specific components like the robot.
+- The application relies on the NPM package `@wandelbots/nova-js` and `@wandelbots/wandelbots-js-react-compoents`. The package is used to communicate with the Wandelbots API. The component library is used to render specific components like the robot.
 - Selected environment variables from the runtime server context are injected into the browser by SSR of the layout, see `runtimeEnv.ts`. This allows the docker image to be configurable on startup without rebuilding Next
 - We use a lot of [MobX](https://mobx.js.org/the-gist-of-mobx.html) observables and computed properties for state management

@@ -1,13 +1,13 @@
-import decompress from "decompress"
-import isCI from "is-ci"
-import { readFileSync } from "node:fs"
-import { mkdtemp, writeFile } from "node:fs/promises"
-import { tmpdir } from "node:os"
-import path from "node:path"
-import { exit } from "node:process"
-import { Readable } from "node:stream"
-import type { ReadableStream } from "node:stream/web"
-import { mv, rm } from "shelljs"
+import decompress from "decompress";
+import isCI from "is-ci";
+import { readFileSync } from "node:fs";
+import { mkdtemp, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import path from "node:path";
+import { exit } from "node:process";
+import { Readable } from "node:stream";
+import type { ReadableStream } from "node:stream/web";
+import { mv, rm } from "shelljs";
 
 /**
  * Downloads the robot glb asset files published in the currently installed
@@ -27,70 +27,70 @@ async function updateRobotModels() {
       ),
       "utf8",
     ),
-  )
+  );
 
   // Compare it to the version in public/models
   const currentVersion = readFileSync(
     path.join(__dirname, "../public/models/version.txt"),
     "utf8",
-  ).trim()
+  ).trim();
 
   if (version === currentVersion) {
-    return // All good here
+    return; // All good here
   }
 
   if (isCI) {
     console.error(
       `Robot models are out of sync with package.json: ${currentVersion} ➜ ${version}. Please run npm install locally and commit the result.`,
-    )
-    exit(1)
+    );
+    exit(1);
   }
 
   if (version === "0.0.0-semantically-released") {
     console.log(
       "Not updating models; using a development version of wbjs-react",
-    )
-    return
+    );
+    return;
   }
 
   // Versions differ, so we need to update the models
-  const zipUrl = `https://github.com/wandelbotsgmbh/wandelbots-js-react-components/archive/refs/tags/v${version}.zip`
-  console.log(`Downloading ${zipUrl}...`)
+  const zipUrl = `https://github.com/wandelbotsgmbh/wandelbots-js-react-components/archive/refs/tags/v${version}.zip`;
+  console.log(`Downloading ${zipUrl}...`);
 
-  const response = await fetch(zipUrl)
+  const response = await fetch(zipUrl);
   if (response.status !== 200 || !response.body) {
-    console.error("Failed to download model zip", response)
-    exit(1)
+    console.error("Failed to download model zip", response);
+    exit(1);
   }
 
-  const tmpDir = await mkdtemp(path.join(tmpdir(), "robot-pad-models-"))
+  const tmpDir = await mkdtemp(path.join(tmpdir(), "robot-pad-models-"));
 
-  const stream = Readable.fromWeb(response.body as ReadableStream)
-  const zipPath = path.join(tmpDir, `${version}.zip`)
-  await writeFile(zipPath, stream)
+  const stream = Readable.fromWeb(response.body as ReadableStream);
+  const zipPath = path.join(tmpDir, `${version}.zip`);
+  await writeFile(zipPath, stream);
 
   // Unpack the models
-  console.log("Unpacking zip...")
-  await decompress(zipPath, tmpDir)
+  console.log("Unpacking zip...");
+  await decompress(zipPath, tmpDir);
   const newModelsDir = path.join(
     tmpDir,
     `wandelbots-js-react-components-${version}/public/models`,
-  )
+  );
 
   // Write the version stamp
-  await writeFile(path.join(newModelsDir, "version.txt"), version)
+  await writeFile(path.join(newModelsDir, "version.txt"), version);
 
   // Replace the old models dir with the new one
-  console.log("Replacing models...")
+  console.log("Replacing models...");
 
-  const oldModelsDir = path.join(__dirname, "../public/models/")
-  rm("-rf", oldModelsDir)
-  mv(newModelsDir, oldModelsDir)
+  const oldModelsDir = path.join(__dirname, "../public/models/");
+  rm("-rf", oldModelsDir);
+  mv(newModelsDir, oldModelsDir);
 
   // Done!
   console.log(
     `Successfully updated robot models ${currentVersion} ➜ ${version}`,
-  )
+  );
 }
 
-updateRobotModels()
+updateRobotModels();
