@@ -27,15 +27,14 @@
     "mobx-react-lite": "^4.0.7",
     "next": "^16.0.10",
     "react": "^19.2.3",
-    "react-dom": "^19.2.3",
-    "sharp": "^0.33.4"
+    "react-dom": "^19.2.3"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.3.9",
     "@types/decompress": "^4.2.7",
     "@types/is-ci": "^3.0.4",
     "@types/node": "^24",
-    "@types/react": "^18",
+    "@types/react": "^19.2.7",
     "decompress": "^4.2.1",
     "is-ci": "^3.0.1",
     "nodemon": "^3.1.0",
