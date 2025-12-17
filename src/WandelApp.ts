@@ -1,9 +1,9 @@
-import type { ConnectedMotionGroup, NovaClient } from "@wandelbots/nova-js";
 import type {
+  ConnectedMotionGroup,
   ControllerInstance,
   MotionGroupPhysical,
-} from "@wandelbots/wandelbots-api-client";
-// import { ProgramStateConnection } from "@wandelbots/nova-js";
+  NovaClient,
+} from "@wandelbots/nova-js/v1";
 import { flatten, keyBy } from "lodash-es";
 import { makeAutoObservable } from "mobx";
 
@@ -58,9 +58,5 @@ export class WandelApp {
 
   async selectMotionGroup(motionGroupId: string) {
     this.activeRobot = await this.nova.connectMotionGroup(motionGroupId);
-  }
-
-  async startProgramRunner() {
-    this.programRunner = new ProgramStateConnection(this.nova);
   }
 }

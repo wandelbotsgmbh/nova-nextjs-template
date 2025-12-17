@@ -1,5 +1,5 @@
 # build environment
-FROM node:21-alpine AS base
+FROM node:24.12.0-alpine AS base
 
 ENV NODE_ENV=production \
     PORT=3000 \
