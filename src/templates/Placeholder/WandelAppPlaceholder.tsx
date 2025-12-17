@@ -12,7 +12,6 @@ import {
 } from "@wandelbots/wandelbots-js-react-components";
 import Image from "next/image";
 import { useState } from "react";
-import { MathUtils } from "three";
 import { env } from "../../runtimeEnv";
 import { useActiveRobot } from "../../WandelAppContext";
 import AnimatedBackground from "./AnimatedBackground";
@@ -130,7 +129,7 @@ export const WandelAppPlaceholder = () => {
                         // biome-ignore lint/suspicious/noArrayIndexKey: Joints are always in a specific order
                         <span key={index}>
                           Joint {index + 1}:{" "}
-                          {Math.round(MathUtils.radToDeg(joint))}°
+                          {Math.round((joint * 180) / Math.PI)}°
                         </span>
                       ))}
                     </Stack>
@@ -152,8 +151,8 @@ export const WandelAppPlaceholder = () => {
                       spacing={0.5}
                       letterSpacing={0.6}
                     >
-                      <span style={{ color: "#ffffff88" }}>Usefull links:</span>
-                      <span>Manage your Instance or get help:</span>
+                      <span style={{ color: "#ffffff88" }}>Useful links:</span>
+                      <span>Manage your instance or get help:</span>
                       <Link
                         color="#6558FF"
                         href="https://portal.wandelbots.io/"
