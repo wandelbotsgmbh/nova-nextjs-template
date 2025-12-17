@@ -27,7 +27,6 @@
     "mobx-react-lite": "^4.0.7",
     "next": "^16.0.10",
     "react": "^19.2.3",
-    "react-device-detect": "^2.2.3",
     "react-dom": "^19.2.3",
     "sharp": "^0.33.4"
   },
