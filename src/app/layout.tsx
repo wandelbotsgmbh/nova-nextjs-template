@@ -1,7 +1,7 @@
+import { getExposedRuntimeEnv } from "@/runtimeEnv";
 import { Inter } from "next/font/google";
-import "./globals.css";
 import { ClientLayout } from "./ClientLayout";
-import { getExposedRuntimeEnv } from "../../runtimeEnv";
+import "./globals.css";
 
 export const dynamic = "force-dynamic";
 

@@ -1,8 +1,8 @@
 "use client";
 
+import { env as runtimeEnv } from "@/runtimeEnv";
 import { ThemeProvider } from "@mui/material/styles";
 import { createNovaMuiTheme } from "@wandelbots/wandelbots-js-react-components";
-import { env as runtimeEnv } from "../../runtimeEnv";
 import { WandelAppLoader } from "./WandelAppLoader";
 
 export function ClientLayout({

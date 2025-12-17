@@ -1,10 +1,10 @@
 "use client";
 
+import { getNovaClient } from "@/getWandelApi";
+import { WandelApp } from "@/WandelApp";
+import { WandelAppContext } from "@/WandelAppContext";
 import { observer, useLocalObservable } from "mobx-react-lite";
 import { type ReactNode, useEffect } from "react";
-import { getNovaClient } from "../../getWandelApi";
-import { WandelApp } from "../../WandelApp";
-import { WandelAppContext } from "../../WandelAppContext";
 import { LoadingScreen } from "./LoadingScreen";
 
 export const WandelAppLoader = observer((props: { children: ReactNode }) => {

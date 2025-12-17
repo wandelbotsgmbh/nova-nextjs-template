@@ -16,7 +16,7 @@ import { MathUtils } from "three";
 import { env } from "../../runtimeEnv";
 import { useActiveRobot } from "../../WandelAppContext";
 import AnimatedBackground from "./AnimatedBackground";
-import wandelbots from "./wandelbots.png";
+import wandelbots from "./wbnova.svg";
 
 const CustomCard = styled(Card)({
   background: "none",

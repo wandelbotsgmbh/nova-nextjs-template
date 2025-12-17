@@ -1,10 +1,10 @@
 "use client";
 
+import { env } from "@/runtimeEnv";
+import { WandelAppPlaceholder } from "@/templates/Placeholder/WandelAppPlaceholder";
+import { useWandelApp } from "@/WandelAppContext";
 import { NoMotionGroupModal } from "@wandelbots/wandelbots-js-react-components";
 import { observer } from "mobx-react-lite";
-import { env } from "../../runtimeEnv";
-import { WandelAppPlaceholder } from "../../templates/Placeholder/WandelAppPlaceholder";
-import { useWandelApp } from "../../WandelAppContext";
 import { LoadingScreen } from "./LoadingScreen";
 
 export const WandelAppMain = observer(() => {
