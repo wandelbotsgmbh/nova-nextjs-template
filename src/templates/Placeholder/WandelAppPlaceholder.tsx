@@ -14,7 +14,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { env } from "@/runtimeEnv.ts";
 import { useActiveRobot } from "@/WandelAppContext.ts";
-import AnimatedBackground from "./AnimatedBackground.ts";
+import AnimatedBackground from "./AnimatedBackground.tsx";
 import wandelbots from "./wbnova.svg";
 
 const CustomCard = styled(Card)({
