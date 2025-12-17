@@ -1,5 +1,5 @@
 # If you update this here, make sure to update the version in the Dockerfile
-# as well
+# and the @types/node package as well
 useNodeVersion: 24.12.0
 
 # Add minimum release age to mitigate risk of supply chain attacks

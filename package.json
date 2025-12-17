@@ -9,7 +9,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "biome check --error-on-warnings",
-    "lint:fix": "biome format --write .",
+    "format": "biome format --write .",
     "tsc": "tsc --pretty --noEmit",
     "checks": "run-s --continue-on-error tsc lint",
     "build-libs": "node scripts/build-and-install-libs.js",

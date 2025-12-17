@@ -36,4 +36,4 @@ module.exports = {
       { prefer: "type-imports" },
     ],
   },
-}
+};
