@@ -8,9 +8,7 @@ The generated boilerplate is a [NextJS](https://nextjs.org/) app which gives the
 
 🔥 Type checking TypeScript
 
-📏 Linter with ESLint
-
-💖 Code Formatter with Prettier
+📏 Linting & Formatting with Biome
 
 ## Development setup
 
@@ -21,7 +19,7 @@ You will need nodejs installed. The recommended way to install node is with [nvm
 To install the dependencies, run:
 
 ```bash
-npm install
+pnpm install
 ```
 
 ## Connecting to an existing instance
@@ -41,7 +39,7 @@ NOVA_PASSWORD="password"
 Once everything is set up, you can run the NextJS dev server:
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
