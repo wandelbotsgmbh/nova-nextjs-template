@@ -8,6 +8,7 @@ export const LoadingScreen = (props: { message?: string; error?: unknown }) => {
       height="100%"
       alignItems="center"
       justifyContent="center"
+      gap="1rem"
     >
       {props.error ? (
         <LoadingErrorMessage message={props.message} error={props.error} />

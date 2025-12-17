@@ -2,7 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "standalone",
-  reactStrictMode: false,
 
   // Workaround for hosting under a subpath as required for
   // deployment on NOVA OS cells
