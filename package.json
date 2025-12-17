@@ -11,13 +11,12 @@
     "lint": "biome check --error-on-warnings",
     "format": "biome format --write .",
     "tsc": "tsc --pretty --noEmit",
-    "checks": "run-s --continue-on-error tsc lint",
-    "build-libs": "node scripts/build-and-install-libs.js",
-    "postinstall": "tsx scripts/update-robot-models.ts || :"
+    "checks": "run-s --continue-on-error tsc lint"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^7.3.6",
     "@mui/material": "^7.3.6",
     "@types/lodash-es": "^4.17.12",
     "@wandelbots/nova-js": "^3.3.1",
@@ -36,6 +35,7 @@
     "@types/node": "^24",
     "@types/react": "^19.2.7",
     "decompress": "^4.2.1",
+    "execa": "^9.6.1",
     "is-ci": "^3.0.1",
     "nodemon": "^3.1.0",
     "npm-run-all": "^4.1.5",

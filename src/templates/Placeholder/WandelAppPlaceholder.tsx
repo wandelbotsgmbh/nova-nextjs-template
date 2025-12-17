@@ -79,7 +79,7 @@ export const WandelAppPlaceholder = () => {
               <Typography variant="body2" color="white" fontFamily={"Monaco"}>
                 → Get started by editing{" "}
                 <span style={{ color: "#49D4FF" }}>
-                  src/app/(app)/WandelAppMain.tsx
+                  src/app/WandelAppMain.tsx
                 </span>
               </Typography>
             </CardContent>

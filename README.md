@@ -1,6 +1,6 @@
-# Boilerplate NextJS
+# NOVA Next.js app template 
 
-This boilerplate can be generated with the [CLI](https://portal.wandelbots.io/en/download) and running `cli app create myapp`.
+This boilerplate can be generated with the [NOVA CLI](https://portal.wandelbots.io/en/download) and running `nova app create myapp`.
 
 The generated boilerplate is a [NextJS](https://nextjs.org/) app which gives the user the skeleton to start a new robot application.
 
@@ -12,11 +12,9 @@ The generated boilerplate is a [NextJS](https://nextjs.org/) app which gives the
 
 ## Development setup
 
-You will need nodejs installed. The recommended way to install node is with [nvm](https://github.com/nvm-sh/nvm) by running `nvm install` in the repository root; this will get the specific version of node from `.nvmrc` that the project expects.
+First install [pnpm](https://pnpm.io/), which is used to manage the node version as well as the packages. 
 
 ## Installing dependencies
-
-To install the dependencies, run:
 
 ```bash
 pnpm install
@@ -48,6 +46,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 The boilerplate is structurally pretty simple since it needs no url changes, like a basic React SPA. Some things to note:
 
-- The application relies on the NPM package `@wandelbots/nova-js` and `@wandelbots/wandelbots-js-react-compoents`. The package is used to communicate with the Wandelbots API. The component library is used to render specific components like the robot.
+- The application relies on the NPM package `@wandelbots/nova-js` and `@wandelbots/wandelbots-js-react-components`. The package is used to communicate with the Wandelbots API. The component library is used to render specific components like the robot.
 - Selected environment variables from the runtime server context are injected into the browser by SSR of the layout, see `runtimeEnv.ts`. This allows the docker image to be configurable on startup without rebuilding Next
 - We use a lot of [MobX](https://mobx.js.org/the-gist-of-mobx.html) observables and computed properties for state management
