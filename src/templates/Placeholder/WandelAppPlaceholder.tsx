@@ -92,7 +92,7 @@ export const WandelAppPlaceholder = () => {
             <Stack direction="row" spacing={2} justifyContent="space-between">
               <CustomCard>
                 <CardContent>
-                  <Typography variant="body2" color="white">
+                  <Typography variant="body2" color="white" component="div">
                     <Stack
                       direction="column"
                       justifyContent="flex-start"
@@ -117,7 +117,7 @@ export const WandelAppPlaceholder = () => {
 
               <CustomCard>
                 <CardContent>
-                  <Typography variant="body2" color="white">
+                  <Typography variant="body2" color="white" component="div">
                     <Stack
                       direction="column"
                       justifyContent="flex-start"
@@ -127,6 +127,7 @@ export const WandelAppPlaceholder = () => {
                     >
                       <span style={{ color: "#ffffff88" }}>Robot pose:</span>
                       {axisConfig.map((joint, index) => (
+                        // biome-ignore lint/suspicious/noArrayIndexKey: Joints are always in a specific order
                         <span key={index}>
                           Joint {index + 1}:{" "}
                           {Math.round(MathUtils.radToDeg(joint))}°
@@ -138,12 +139,12 @@ export const WandelAppPlaceholder = () => {
               </CustomCard>
 
               <CustomCard
-                onClick={() =>
-                  (window.location.href = `${env.WANDELAPI_BASE_URL}`)
-                }
+                onClick={() => {
+                  window.location.href = `${env.WANDELAPI_BASE_URL}`;
+                }}
               >
                 <CardContent>
-                  <Typography variant="body2" color="white">
+                  <Typography variant="body2" color="white" component="div">
                     <Stack
                       direction="column"
                       justifyContent="flex-start"

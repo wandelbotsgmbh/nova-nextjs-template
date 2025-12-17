@@ -12,7 +12,7 @@ export const WandelAppMain = observer(() => {
 
   if (!wandelApp.motionGroupOptions.length) {
     // No robots (virtual or otherwise)! We can't do much without a robot.
-    return <NoMotionGroupModal baseUrl={env.WANDELAPI_BASE_URL} />;
+    return <NoMotionGroupModal baseUrl={env.WANDELAPI_BASE_URL || ""} />;
   }
 
   // Everything below this point expects an active robot

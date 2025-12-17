@@ -17,8 +17,6 @@ export type MotionGroupOption = {
 export class WandelApp {
   selectedMotionGroupId: string | null = null;
 
-  // programRunner: ProgramStateConnection | null = null;
-
   /**
    * Represents the current state of the selected motion group
    * after setup and websocket connection */
