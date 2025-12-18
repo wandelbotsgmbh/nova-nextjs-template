@@ -19,8 +19,8 @@ RUN pnpm run build
 
 # Production image, copy all the files and run next
 FROM base AS runner
-COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/scripts/entrypoint.sh ./entrypoint.sh
 
