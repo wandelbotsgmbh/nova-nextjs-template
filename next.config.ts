@@ -18,11 +18,11 @@ const nextConfig: NextConfig = {
 
   // Little dev niceness thing, redirect from / to base path
   redirects() {
-    return process.env.NODE_ENV === "development"
+    return process.env.NODE_ENV === "development" && process.env.BASE_PATH
       ? [
           {
             source: "/",
-            destination: process.env.BASE_PATH || "/",
+            destination: process.env.BASE_PATH,
             basePath: false,
             permanent: false,
           },

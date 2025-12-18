@@ -46,7 +46,7 @@ export function useControllerState(controller: string) {
     socket.addEventListener("error", (event) => {
       setState({
         controllerState: null,
-        error: new Error(`WebSocket error: ${event}`),
+        error: event.error,
       });
     });
 
