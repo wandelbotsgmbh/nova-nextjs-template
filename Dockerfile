@@ -1,5 +1,6 @@
 FROM node:24.12.0-alpine AS base
 WORKDIR /app
+RUN corepack enable
 
 ENV NODE_ENV=production \
     NEXT_TELEMETRY_DISABLED=1
@@ -7,7 +8,6 @@ ENV NODE_ENV=production \
 # Install dependencies
 FROM base AS deps
 COPY package.json pnpm-lock.yaml ./
-RUN corepack enable
 RUN pnpm install --frozen-lockfile
 
 # Build the app

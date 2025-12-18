@@ -29,6 +29,12 @@ const nextConfig: NextConfig = {
         ]
       : [];
   },
+
+  typescript: {
+    // Type errors should be checked as a separate build step to nextjs
+    // using `pnpm run tsc`
+    ignoreBuildErrors: true,
+  },
 };
 
 export default nextConfig;
