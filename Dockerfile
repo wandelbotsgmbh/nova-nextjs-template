@@ -1,6 +1,7 @@
 FROM node:24.12.0-alpine AS base
-WORKDIR /app
 RUN corepack enable
+USER node
+WORKDIR /app
 
 ENV NODE_ENV=production \
     NEXT_TELEMETRY_DISABLED=1
