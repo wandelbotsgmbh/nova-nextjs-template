@@ -3,7 +3,7 @@ import { env } from "./runtimeEnv.ts";
 
 let nova: NovaClient | null = null;
 
-const getSecureUrl = (url: string): string => {
+const standardizeUrl = (url: string): string => {
   if (!url) {
     return url;
   }
@@ -16,13 +16,13 @@ const getSecureUrl = (url: string): string => {
 
 export const getNovaClient = () => {
   if (!nova) {
-    const secureWandelAPIBaseURL = getSecureUrl(env.WANDELAPI_BASE_URL || "");
+    const baseUrl = standardizeUrl(env.WANDELAPI_BASE_URL || "");
 
     nova = new NovaClient({
       instanceUrl:
         typeof window !== "undefined"
-          ? new URL(secureWandelAPIBaseURL || "", window.location.origin).href
-          : secureWandelAPIBaseURL || "",
+          ? new URL(baseUrl || "", window.location.origin).href
+          : baseUrl || "",
       cellId: env.CELL_ID || "cell",
       accessToken: env.NOVA_ACCESS_TOKEN || "",
       baseOptions: {
