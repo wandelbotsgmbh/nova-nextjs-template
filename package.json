@@ -11,7 +11,7 @@
     "lint": "biome check --error-on-warnings",
     "format": "biome format --write .",
     "tsc": "tsc --pretty --noEmit",
-    "checks": "run-s --continue-on-error tsc lint"
+    "knip": "knip"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -28,17 +28,9 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.3.9",
-    "@types/decompress": "^4.2.7",
-    "@types/is-ci": "^3.0.4",
     "@types/node": "^24",
     "@types/react": "^19.2.7",
-    "decompress": "^4.2.1",
-    "execa": "^9.6.1",
-    "is-ci": "^3.0.1",
-    "nodemon": "^3.1.0",
-    "npm-run-all": "^4.1.5",
-    "shx": "^0.3.4",
-    "tsx": "^4.7.2",
+    "knip": "^5.75.1",
     "typescript": "5.9.3"
   }
 }

@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import {
   LoadingCover,
   NoMotionGroupModal,
-} from "@wandelbots/wandelbots-js-react-components";
+} from "@wandelbots/wandelbots-js-react-components/core";
 import Image from "next/image";
 import { useControllerState } from "@/hooks/useControllerState.ts";
 import { env } from "@/runtimeEnv.ts";

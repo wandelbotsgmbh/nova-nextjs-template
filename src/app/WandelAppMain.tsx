@@ -1,6 +1,6 @@
 "use client";
 
-import { NoMotionGroupModal } from "@wandelbots/wandelbots-js-react-components";
+import { NoMotionGroupModal } from "@wandelbots/wandelbots-js-react-components/core";
 import { useAvailableControllers } from "@/hooks/useAvailableControllers.ts";
 import { env } from "@/runtimeEnv.ts";
 import { WandelAppPlaceholder } from "@/templates/Placeholder/WandelAppPlaceholder.tsx";

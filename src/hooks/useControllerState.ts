@@ -48,7 +48,7 @@ export function useControllerState(controller: string) {
         controllerState: null,
         error: new Error(`WebSocket error: ${event}`),
       });
-    })
+    });
 
     return () => {
       socket.close();
