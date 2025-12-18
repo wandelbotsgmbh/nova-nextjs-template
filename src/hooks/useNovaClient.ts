@@ -3,28 +3,27 @@ import { env } from "@/runtimeEnv.ts";
 
 let nova: NovaClient | null = null;
 
-const getSecureUrl = (url: string): string => {
-  if (!url) {
-    return url;
+function getNovaApiGatewayUrl() {
+  if (env.NODE_ENV !== "production" && env.NOVA_DEV_INSTANCE_URL) {
+    // In local dev: access the API remotely via the dev instance URL
+    return env.NOVA_DEV_INSTANCE_URL || "";
   }
-  return url.startsWith("http://") || url.startsWith("https://")
-    ? url
-    : url.includes("wandelbots.io")
-      ? `https://${url}`
-      : `http://${url}`;
-};
+
+  if (typeof window === "undefined") {
+    // On prod backend: access the API via the cluster-relative URL
+    return process.env.NOVA_API || "";
+  } else {
+    // In prod frontend: access the API via the instance URL we are deployed on
+    return window.location.origin;
+  }
+}
 
 export const useNovaClient = () => {
   if (!nova) {
-    const secureWandelAPIBaseURL = getSecureUrl(env.WANDELAPI_BASE_URL || "");
-
     nova = new NovaClient({
-      instanceUrl:
-        typeof window !== "undefined"
-          ? new URL(secureWandelAPIBaseURL || "", window.location.origin).href
-          : secureWandelAPIBaseURL || "",
+      instanceUrl: getNovaApiGatewayUrl(),
       cellId: env.CELL_ID || "cell",
-      accessToken: env.NOVA_ACCESS_TOKEN || "",
+      accessToken: env.NOVA_DEV_ACCESS_TOKEN || "",
       baseOptions: {
         // Time out after 30 seconds
         timeout: 30000,

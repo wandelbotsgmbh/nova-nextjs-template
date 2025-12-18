@@ -1,10 +1,10 @@
 import { Stack } from "@mui/material";
-import { WandelAppMain } from "./WandelAppMain.tsx";
+import { NovaAppMain } from "./NovaAppMain.tsx";
 
 export default function Home() {
   return (
     <Stack height="100vh">
-      <WandelAppMain />
+      <NovaAppMain />
     </Stack>
   );
 }

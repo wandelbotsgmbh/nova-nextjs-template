@@ -10,12 +10,9 @@ export const env: Partial<ReturnType<typeof getExposedRuntimeEnv>> = {};
 export function getExposedRuntimeEnv() {
   return {
     BASE_PATH: process.env.BASE_PATH,
-    WANDELAPI_BASE_URL: process.env.WANDELAPI_BASE_URL,
     CELL_ID: process.env.CELL_ID,
-    VERSION: process.env.VERSION,
     NODE_ENV: process.env.NODE_ENV,
-    NOVA_USERNAME: process.env.NOVA_USERNAME,
-    NOVA_PASSWORD: process.env.NOVA_PASSWORD,
-    NOVA_ACCESS_TOKEN: process.env.NOVA_ACCESS_TOKEN,
+    NOVA_DEV_INSTANCE_URL: process.env.NOVA_DEV_INSTANCE_URL,
+    NOVA_DEV_ACCESS_TOKEN: process.env.NOVA_DEV_ACCESS_TOKEN,
   };
 }

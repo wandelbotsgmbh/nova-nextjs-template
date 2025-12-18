@@ -20,7 +20,6 @@ const CustomCard = styled(Card)({
   background: "none",
   borderRadius: "15px",
   margin: "10px",
-  cursor: "pointer",
   width: "300px",
 });
 
@@ -30,15 +29,10 @@ const BlurredCard = styled(Card)({
   marginTop: "100px",
   padding: "8px 24px",
   border: "1px solid #ffffff22",
-  cursor: "pointer",
   backdropFilter: "blur(50px)",
 });
 
-export const WandelAppPlaceholder = ({
-  controller,
-}: {
-  controller: string;
-}) => {
+export const NovaAppPlaceholder = ({ controller }: { controller: string }) => {
   const { controllerState, error } = useControllerState(controller);
   const motionGroup = controllerState?.motion_groups?.[0];
 
@@ -47,7 +41,7 @@ export const WandelAppPlaceholder = ({
   }
 
   if (!motionGroup) {
-    return <NoMotionGroupModal baseUrl={env.WANDELAPI_BASE_URL || ""} />;
+    return <NoMotionGroupModal baseUrl={env.NOVA_DEV_INSTANCE_URL || ""} />;
   }
 
   return (
@@ -141,11 +135,7 @@ export const WandelAppPlaceholder = ({
                 </CardContent>
               </CustomCard>
 
-              <CustomCard
-                onClick={() => {
-                  window.location.href = `${env.WANDELAPI_BASE_URL}`;
-                }}
-              >
+              <CustomCard>
                 <CardContent>
                   <Typography variant="body2" color="white" component="div">
                     <Stack
@@ -165,8 +155,11 @@ export const WandelAppPlaceholder = ({
                       </Link>
                       <br />
                       <span>Move robot:</span>
-                      <Link color="#6558FF" href={`${env.WANDELAPI_BASE_URL}`}>
-                        {env.WANDELAPI_BASE_URL}
+                      <Link
+                        color="#6558FF"
+                        href={env.NOVA_DEV_INSTANCE_URL || "/"}
+                      >
+                        {env.NOVA_DEV_INSTANCE_URL || window.location.origin}
                       </Link>
                     </Stack>
                   </Typography>
