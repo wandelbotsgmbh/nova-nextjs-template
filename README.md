@@ -22,13 +22,13 @@ pnpm install
 
 ## Local development with a NOVA instance
 
-You can run your app locally for development and connect it to a remote NOVA instance by providing the `NOVA_API`, `NOVA_ACCESS_TOKEN` and `CELL_ID` environment variables in `.env.local`. 
+You can run your app locally for development and connect it to a remote NOVA instance by providing the `NOVA_DEV_INSTANCE_URL`, `NOVA_DEV_ACCESS_TOKEN` and `CELL_ID` environment variables in `.env.local`. 
 
 For example, if your instance is at `my.instance.wandelbots.io` and your cell is called `cell`:
 
 ```bash
-NOVA_API=https://my.instance.wandelbots.io
-NOVA_ACCESS_TOKEN="..."
+NOVA_DEV_INSTANCE_URL=https://my.instance.wandelbots.io
+NOVA_DEV_ACCESS_TOKEN="..."
 CELL_ID=cell
 ```
 
