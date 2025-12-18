@@ -19,6 +19,7 @@
     "@mui/icons-material": "^7.3.6",
     "@mui/material": "^7.3.6",
     "@mui/material-nextjs": "^7.3.6",
+    "@tanstack/react-query": "^5.90.12",
     "@types/lodash-es": "^4.17.12",
     "@wandelbots/nova-js": "^3.3.1",
     "@wandelbots/wandelbots-js-react-components": "^3.3.2",

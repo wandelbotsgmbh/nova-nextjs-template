@@ -7,13 +7,12 @@ import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import {
-  defaultAxisConfig,
-  useAnimationFrame,
+  LoadingCover,
+  NoMotionGroupModal,
 } from "@wandelbots/wandelbots-js-react-components";
 import Image from "next/image";
-import { useState } from "react";
+import { useControllerState } from "@/hooks/useControllerState.ts";
 import { env } from "@/runtimeEnv.ts";
-import { useActiveRobot } from "@/WandelAppContext.ts";
 import AnimatedBackground from "./AnimatedBackground.tsx";
 import wandelbots from "./wbnova.svg";
 
@@ -35,16 +34,22 @@ const BlurredCard = styled(Card)({
   backdropFilter: "blur(50px)",
 });
 
-export const WandelAppPlaceholder = () => {
-  const activeRobot = useActiveRobot();
-  const [axisConfig, setAxisConfig] = useState(defaultAxisConfig);
+export const WandelAppPlaceholder = ({
+  controller,
+}: {
+  controller: string;
+}) => {
+  const { controllerState, error } = useControllerState(controller);
+  const motionGroup = controllerState?.motion_groups?.[0];
 
-  useAnimationFrame(() => {
-    const newJoints =
-      activeRobot.rapidlyChangingMotionState.state.joint_position.joints;
+  if (!controllerState) {
+    return <LoadingCover error={error} />;
+  }
 
-    setAxisConfig([...newJoints].filter((item) => item !== undefined));
-  });
+  if (!motionGroup) {
+    return <NoMotionGroupModal baseUrl={env.WANDELAPI_BASE_URL || ""} />;
+  }
+
   return (
     <>
       <AnimatedBackground />
@@ -107,8 +112,7 @@ export const WandelAppPlaceholder = () => {
                       <span style={{ color: "#ffffff88" }}>
                         Connected with:
                       </span>
-                      <span>{activeRobot.modelFromController}</span>
-                      <span>{activeRobot.motionGroupId}</span>
+                      <span>{motionGroup.motion_group}</span>
                     </Stack>
                   </Typography>
                 </CardContent>
@@ -125,7 +129,7 @@ export const WandelAppPlaceholder = () => {
                       letterSpacing={0.6}
                     >
                       <span style={{ color: "#ffffff88" }}>Robot pose:</span>
-                      {axisConfig.map((joint, index) => (
+                      {motionGroup.joint_position.map((joint, index) => (
                         // biome-ignore lint/suspicious/noArrayIndexKey: Joints are always in a specific order
                         <span key={index}>
                           Joint {index + 1}:{" "}
