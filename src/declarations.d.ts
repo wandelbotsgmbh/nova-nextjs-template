@@ -1,9 +1,4 @@
-declare module "*.ws" {
-  const content: string;
-  export default content;
-}
-
-declare module "*.glb" {
+declare module "*.css" {
   const content: string;
   export default content;
 }

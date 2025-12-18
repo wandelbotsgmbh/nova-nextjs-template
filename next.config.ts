@@ -22,7 +22,7 @@ const nextConfig: NextConfig = {
       ? [
           {
             source: "/",
-            destination: process.env.BASE_PATH,
+            destination: process.env.BASE_PATH || "/",
             basePath: false,
             permanent: false,
           },
