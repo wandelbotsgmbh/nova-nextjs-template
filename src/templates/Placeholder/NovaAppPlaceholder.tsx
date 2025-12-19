@@ -78,7 +78,7 @@ export const NovaAppPlaceholder = ({ controller }: { controller: string }) => {
               <Typography variant="body2" color="white" fontFamily={"Monaco"}>
                 → Get started by editing{" "}
                 <span style={{ color: "#49D4FF" }}>
-                  src/app/WandelAppMain.tsx
+                  src/app/NovaAppMain.tsx
                 </span>
               </Typography>
             </CardContent>
