@@ -3,14 +3,19 @@
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { createNovaMuiTheme } from "@wandelbots/wandelbots-js-react-components/core";
-import { Suspense } from "react";
-import { LoadingScreen } from "@/components/LoadingScreen.tsx";
+import {
+  createNovaMuiTheme,
+  LoadingCover,
+} from "@wandelbots/wandelbots-js-react-components/core";
+import { Suspense, useEffect, useState } from "react";
 import { env as runtimeEnv } from "@/runtimeEnv.ts";
 
-let envAssigned = false;
 const queryClient = new QueryClient();
 
+/**
+ * Marks a transition from server to browser rendering.
+ * Children will only be rendered once mounted in the browser.
+ */
 export function ClientLayout({
   env,
   children,
@@ -18,11 +23,16 @@ export function ClientLayout({
   env: Record<string, string | undefined>;
   children: React.ReactNode;
 }>) {
-  if (!envAssigned) {
-    console.log("Runtime ENV from server:\n  ", env);
-    Object.assign(runtimeEnv, env);
-    envAssigned = true;
-  }
+  const [isBrowser, setIsBrowser] = useState(false);
+
+  useEffect(() => {
+    if (!isBrowser) {
+      setIsBrowser(true);
+
+      console.log("Runtime ENV from server:\n  ", env);
+      Object.assign(runtimeEnv, env);
+    }
+  }, [isBrowser, env]);
 
   const theme = createNovaMuiTheme({});
 
@@ -30,7 +40,7 @@ export function ClientLayout({
     <ThemeProvider theme={theme}>
       <CssBaseline enableColorScheme />
       <QueryClientProvider client={queryClient}>
-        <Suspense fallback={<LoadingScreen />}>{children}</Suspense>
+        {isBrowser ? children : null}
       </QueryClientProvider>
     </ThemeProvider>
   );

@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useNovaClient } from "./useNovaClient.ts";
 
 /**
@@ -8,7 +8,7 @@ import { useNovaClient } from "./useNovaClient.ts";
 export function useAvailableControllers() {
   const nova = useNovaClient();
 
-  const { data } = useSuspenseQuery({
+  const { data, error } = useQuery({
     queryKey: ["available-controllers"],
     queryFn: async () => {
       const controllers = await nova.api.controller.listRobotControllers();
@@ -16,5 +16,5 @@ export function useAvailableControllers() {
     },
   });
 
-  return { controllers: data };
+  return { controllers: data, error };
 }
