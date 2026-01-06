@@ -1,6 +1,5 @@
 FROM node:24.12.0-alpine AS base
 RUN corepack enable
-USER node
 WORKDIR /app
 
 ENV NODE_ENV=production \
@@ -26,4 +25,4 @@ COPY --from=builder /app/scripts/entrypoint.sh ./entrypoint.sh
 
 EXPOSE 3000
 
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["/bin/sh", "./entrypoint.sh"]
