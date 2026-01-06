@@ -1,27 +1,27 @@
-import { env } from "../../runtimeEnv"
-import React, { useState } from "react"
-import Image from "next/image"
-import Card from "@mui/material/Card"
-import CardContent from "@mui/material/CardContent"
-import Typography from "@mui/material/Typography"
-import { styled } from "@mui/system"
-import wandelbots from "./wandelbots.png"
-import { Box, Divider, Link, Stack } from "@mui/material"
-import { useActiveRobot } from "../../WandelAppContext"
-import { MathUtils } from "three"
-import AnimatedBackground from "./AnimatedBackground"
+import styled from "@emotion/styled";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Divider from "@mui/material/Divider";
+import Link from "@mui/material/Link";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 import {
-  defaultAxisConfig,
-  useAnimationFrame,
-} from "@wandelbots/wandelbots-js-react-components"
+  LoadingCover,
+  NoMotionGroupModal,
+} from "@wandelbots/wandelbots-js-react-components/core";
+import Image from "next/image";
+import { useControllerState } from "@/hooks/useControllerState.ts";
+import { env } from "@/runtimeEnv.ts";
+import AnimatedBackground from "./AnimatedBackground.tsx";
+import wandelbots from "./wbnova.svg";
 
 const CustomCard = styled(Card)({
   background: "none",
   borderRadius: "15px",
   margin: "10px",
-  cursor: "pointer",
   width: "300px",
-})
+});
 
 const BlurredCard = styled(Card)({
   backgroundColor: "#ffffff11",
@@ -29,20 +29,21 @@ const BlurredCard = styled(Card)({
   marginTop: "100px",
   padding: "8px 24px",
   border: "1px solid #ffffff22",
-  cursor: "pointer",
   backdropFilter: "blur(50px)",
-})
+});
 
-export const WandelAppPlaceholder = () => {
-  const activeRobot = useActiveRobot()
-  const [axisConfig, setAxisConfig] = useState(defaultAxisConfig)
+export const NovaAppPlaceholder = ({ controller }: { controller: string }) => {
+  const { controllerState, error } = useControllerState(controller);
+  const motionGroup = controllerState?.motion_groups?.[0];
 
-  useAnimationFrame(() => {
-    const newJoints =
-      activeRobot.rapidlyChangingMotionState.state.joint_position.joints
+  if (!controllerState) {
+    return <LoadingCover error={error} />;
+  }
 
-    setAxisConfig([...newJoints].filter((item) => item !== undefined))
-  })
+  if (!motionGroup) {
+    return <NoMotionGroupModal baseUrl={env.NOVA_DEV_INSTANCE_URL || ""} />;
+  }
+
   return (
     <>
       <AnimatedBackground />
@@ -77,7 +78,7 @@ export const WandelAppPlaceholder = () => {
               <Typography variant="body2" color="white" fontFamily={"Monaco"}>
                 → Get started by editing{" "}
                 <span style={{ color: "#49D4FF" }}>
-                  src/app/(app)/WandelAppMain.tsx
+                  src/app/NovaAppMain.tsx
                 </span>
               </Typography>
             </CardContent>
@@ -89,7 +90,7 @@ export const WandelAppPlaceholder = () => {
             <Stack direction="row" spacing={2} justifyContent="space-between">
               <CustomCard>
                 <CardContent>
-                  <Typography variant="body2" color="white">
+                  <Typography variant="body2" color="white" component="div">
                     <Stack
                       direction="column"
                       justifyContent="flex-start"
@@ -105,8 +106,7 @@ export const WandelAppPlaceholder = () => {
                       <span style={{ color: "#ffffff88" }}>
                         Connected with:
                       </span>
-                      <span>{activeRobot.modelFromController}</span>
-                      <span>{activeRobot.motionGroupId}</span>
+                      <span>{motionGroup.motion_group}</span>
                     </Stack>
                   </Typography>
                 </CardContent>
@@ -114,7 +114,7 @@ export const WandelAppPlaceholder = () => {
 
               <CustomCard>
                 <CardContent>
-                  <Typography variant="body2" color="white">
+                  <Typography variant="body2" color="white" component="div">
                     <Stack
                       direction="column"
                       justifyContent="flex-start"
@@ -123,10 +123,11 @@ export const WandelAppPlaceholder = () => {
                       letterSpacing={0.6}
                     >
                       <span style={{ color: "#ffffff88" }}>Robot pose:</span>
-                      {axisConfig.map((joint, index) => (
+                      {motionGroup.joint_position.map((joint, index) => (
+                        // biome-ignore lint/suspicious/noArrayIndexKey: Joints are always in a specific order
                         <span key={index}>
                           Joint {index + 1}:{" "}
-                          {Math.round(MathUtils.radToDeg(joint))}°
+                          {Math.round((joint * 180) / Math.PI)}°
                         </span>
                       ))}
                     </Stack>
@@ -134,13 +135,9 @@ export const WandelAppPlaceholder = () => {
                 </CardContent>
               </CustomCard>
 
-              <CustomCard
-                onClick={() =>
-                  (window.location.href = `${env.WANDELAPI_BASE_URL}`)
-                }
-              >
+              <CustomCard>
                 <CardContent>
-                  <Typography variant="body2" color="white">
+                  <Typography variant="body2" color="white" component="div">
                     <Stack
                       direction="column"
                       justifyContent="flex-start"
@@ -148,8 +145,8 @@ export const WandelAppPlaceholder = () => {
                       spacing={0.5}
                       letterSpacing={0.6}
                     >
-                      <span style={{ color: "#ffffff88" }}>Usefull links:</span>
-                      <span>Manage your Instance or get help:</span>
+                      <span style={{ color: "#ffffff88" }}>Useful links:</span>
+                      <span>Manage your instance or get help:</span>
                       <Link
                         color="#6558FF"
                         href="https://portal.wandelbots.io/"
@@ -158,8 +155,11 @@ export const WandelAppPlaceholder = () => {
                       </Link>
                       <br />
                       <span>Move robot:</span>
-                      <Link color="#6558FF" href={`${env.WANDELAPI_BASE_URL}`}>
-                        {env.WANDELAPI_BASE_URL}
+                      <Link
+                        color="#6558FF"
+                        href={env.NOVA_DEV_INSTANCE_URL || "/"}
+                      >
+                        {env.NOVA_DEV_INSTANCE_URL || window.location.origin}
                       </Link>
                     </Stack>
                   </Typography>
@@ -171,5 +171,5 @@ export const WandelAppPlaceholder = () => {
         </Box>
       </Box>
     </>
-  )
-}
+  );
+};

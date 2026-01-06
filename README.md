@@ -1,39 +1,35 @@
-# Boilerplate NextJS
+# Next.js NOVA app template 
 
-This boilerplate can be generated with the [CLI](https://portal.wandelbots.io/en/download) and running `cli app create myapp`.
+This template provides the skeleton of a [Next.js](https://nextjs.org/) robot application built to run on [Wandelbots NOVA](https://docs.wandelbots.io/). 
 
-The generated boilerplate is a [NextJS](https://nextjs.org/) app which gives the user the skeleton to start a new robot application.
+You can generate a new project with the [NOVA CLI](https://portal.wandelbots.io/en/download) by running `nova app create myapp -g "nextjs_app"`.
 
 ⚡ Next.js with App Router support
 
-🔥 Type checking TypeScript
+🔥 Type checking with TypeScript
 
-📏 Linter with ESLint
-
-💖 Code Formatter with Prettier
+📏 Linting & Formatting with Biome
 
 ## Development setup
 
-You will need nodejs installed. The recommended way to install node is with [nvm](https://github.com/nvm-sh/nvm) by running `nvm install` in the repository root; this will get the specific version of node from `.nvmrc` that the project expects.
+First install [pnpm](https://pnpm.io/), which is used to manage the node version as well as the packages. 
 
 ## Installing dependencies
 
-To install the dependencies, run:
-
 ```bash
-npm install
+pnpm install
 ```
 
-## Connecting to an existing instance
+## Local development with a NOVA instance
 
-You can tell the boilerplate project to connect to the instance by providing the `WANDELAPI_BASE_URL`, `CELL_ID`, `NOVA_USERNAME` and `NOVA_PASSWORD` environment variables. For example, if your instance is at `my.instance.wandelbots.io` and your cell is called `cell`.
-Remember to replace the IP address with the one of your [Cloud-Instance](https://portal.wandelbots.io/de/instances).
+You can run your app locally for development and connect it to a remote NOVA instance by providing the `NOVA_DEV_INSTANCE_URL`, `NOVA_DEV_ACCESS_TOKEN` and `CELL_ID` environment variables in `.env.local`. 
+
+For example, if your instance is at `my.instance.wandelbots.io` and your cell is called `cell`:
 
 ```bash
-WANDELAPI_BASE_URL=http://my.instance.wandelbots.io
+NOVA_DEV_INSTANCE_URL=https://my.instance.wandelbots.io
+NOVA_DEV_ACCESS_TOKEN="..."
 CELL_ID=cell
-NOVA_USERNAME="wb"
-NOVA_PASSWORD="password"
 ```
 
 ## Running the dev server
@@ -41,15 +37,15 @@ NOVA_PASSWORD="password"
 Once everything is set up, you can run the NextJS dev server:
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Architecture notes
+## Deploying your app to a NOVA instance
 
-The boilerplate is structurally pretty simple since it needs no url changes, like a basic React SPA. Some things to note:
+If you have the NOVA CLI set up to [work with Docker](https://docs.wandelbots.io/latest/developing-typescript-quickstart#set-up-docker-and-registries), you can deploy your NOVA app into a robot cell directly from the repo using the provided `Dockerfile`:
 
-- The application relies on the NPM package `@wandelbots/wandelbots-js` and `@wandelbots/wandelbots-js-react-compoents`. The package is used to communicate with the Wandelbots API. The component library is used to render specific components like the robot.
-- Selected environment variables from the runtime server context are injected into the browser by SSR of the layout, see `runtimeEnv.ts`. This allows the docker image to be configurable on startup without rebuilding Next
-- We use a lot of [MobX](https://mobx.js.org/the-gist-of-mobx.html) observables and computed properties for state management
+```bash
+nova app install .
+```

@@ -10,7 +10,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "plugins": [
       {
@@ -18,12 +18,16 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
+      "@/*": ["./src/*"]
     },
+    // Explicit extension imports are faster to resolve
+    "allowImportingTsExtensions": true,
     // Improved strictness
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedIndexedAccess": true,
     "verbatimModuleSyntax": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+    "noUncheckedIndexedAccess": true,
+    "useDefineForClassFields": true,
     "allowJs": true
   },
   "include": [
@@ -31,6 +35,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }
