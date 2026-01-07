@@ -35,4 +35,5 @@ kubeconfig.yml
 # typescript
 *.tsbuildinfo
 
-bun.lockb
+# next
+next-env.d.ts
